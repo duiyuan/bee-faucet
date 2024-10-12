@@ -60,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./beefaucet.arm64
+          asset_path: beefaucet.arm64
           asset_name: beefaucet
           asset_content_type: application/octet-stream
 
@@ -70,6 +70,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./beefaucet
+          asset_path: beefaucet
           asset_name: beefaucet
           asset_content_type: application/octet-stream

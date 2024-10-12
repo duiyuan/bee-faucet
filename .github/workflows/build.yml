@@ -30,20 +30,43 @@ jobs:
         run: |
           GOOS=windows GOARCH=amd64 go build -o beefaucet.exe
 
-      - name: Upload macOS AMD64 Artifact
-        uses: actions/upload-artifact@v4
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: macos-amd64
-          path: beefaucet
+          tag_name: "v1.0.${{ github.run_number }}"
+          release_name: "Release v1.0.${{ github.run_number }}"
+          draft: false
+          prerelease: false
+
+      - name: Upload macOS AMD64 Artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: beefaucet
+          asset_name: beefaucet
+          asset_content_type: application/octet-stream
 
       - name: Upload macOS ARM64 Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: macos-arm64
-          path: beefaucet
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: beefaucet
+          asset_name: beefaucet
+          asset_content_type: application/octet-stream
 
       - name: Upload Windows AMD64 Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: windows-amd64
-          path: beefaucet.exe
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: beefaucet.exe
+          asset_name: beefaucet.exe
+          asset_content_type: application/octet-stream

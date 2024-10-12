@@ -13,10 +13,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Go
-        uses: actions/setup-go@v2
+      - name: Setup Go
+        uses: actions/setup-go@v5
         with:
           go-version: "1.23"
+          cache-dependency-path: subdir/go.sum
 
       - name: Build for macOS (x86_64)
         run: |
@@ -36,37 +37,39 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "v1.0.${{ github.run_number }}"
-          release_name: "Release v1.0.${{ github.run_number }}"
+          #   tag_name: "v1.0.${{ github.run_number }}"
+          #   release_name: "Release v1.0.${{ github.run_number }}"
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
 
       - name: Upload macOS AMD64 Artifact
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: beefaucet
+          asset_path: beefaucet.zip
           asset_name: beefaucet
           asset_content_type: application/octet-stream
 
       - name: Upload macOS ARM64 Artifact
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: beefaucet
+          asset_path: ./beefaucet.zip
           asset_name: beefaucet
           asset_content_type: application/octet-stream
 
       - name: Upload Windows AMD64 Artifact
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: beefaucet.exe
+          asset_path: ./beefaucet.zip
           asset_name: beefaucet.exe
           asset_content_type: application/octet-stream

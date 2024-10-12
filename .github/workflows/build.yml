@@ -29,7 +29,7 @@ jobs:
 
       - name: Build for Windows (x86_64)
         run: |
-          GOOS=windows GOARCH=amd64 go build -o beefaucet.exe
+          GOOS=windows GOARCH=amd64 go build -o beefaucet
 
       - name: Create Release
         id: create_release

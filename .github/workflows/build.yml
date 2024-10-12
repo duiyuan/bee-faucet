@@ -51,7 +51,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: beefaucet.amd64
-          asset_name: beefaucet
+          asset_name: beefaucet.amd64
           asset_content_type: application/octet-stream
 
       - name: Upload macOS ARM64 Artifact
@@ -61,7 +61,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: beefaucet.arm64
-          asset_name: beefaucet
+          asset_name: beefaucet.arm64
           asset_content_type: application/octet-stream
 
       - name: Upload Windows AMD64 Artifact

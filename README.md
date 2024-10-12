@@ -52,7 +52,7 @@ Start to faucet ETH for wallet: 0x7F92031F63e01A6ADA475F6E8A637Ce752f8d7D2
   Arbitrum         done, facuet 0.1 ETH
   BNB              done, facuet 0.1 ETH
 
-End faucet, succeed: 0, failed: 9
+End faucet, succeed: 9, failed: 0
 ```
 
 ### Supported Chain

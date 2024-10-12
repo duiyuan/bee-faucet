@@ -23,7 +23,7 @@ const (
 )
 
 var ChainList = map[Short]ChainItem{
-	"ETH":     {ID: ETH, Name: "Ethereum Sepolia"},
+	"ETH":     {ID: ETH, Name: "Ethereum"},
 	"Base":    {ID: BASE, Name: "Base"},
 	"ARB":     {ID: ARB, Name: "Arbitrum"},
 	"OPT":     {ID: OPT, Name: "Optimism"},

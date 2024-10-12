@@ -18,7 +18,7 @@ var (
 func faucet(toAddr string) {
 	blockchains := constants.ChainItems
 
-	fmt.Printf("\nStart to faucet ETH for wallet: %s \n", toAddr)
+	fmt.Printf("\nStart to faucet Sepolia ETH to %s \n", toAddr)
 	fmt.Println("")
 
 	for _, chain := range blockchains {

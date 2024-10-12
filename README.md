@@ -1,10 +1,10 @@
 # Faucet
 
-A faucet tool that supports sending free Sepolia ETH to specified addresses.
+A faucet tool that supports sending free Sepolia ETH to specified address.
 
-# How To Build
+# How To Download
 
-Build it by yourself from the source code or directly download a pre-built version from GitHub.
+Build it by yourself from the source code or directly download a pre-built release version from [GitHub](https://github.com/duiyuan/faucet/releases).
 
 ```
 $ // Build it from source code

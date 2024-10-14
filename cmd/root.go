@@ -10,10 +10,10 @@ var wallet string
 var chain string
 
 var rootCmd = &cobra.Command{
-	Use:   "faucet",
+	Use:   "beefaucet",
 	Short: "Faucet ETH Token for Ethereum or L2 base on Ethereum",
 	Run: func(cmd *cobra.Command, args []string) {
-		faucet(wallet)
+		cmd.Help()
 	},
 }
 

@@ -2,38 +2,34 @@ package cmd
 
 import (
 	"fmt"
-	"sync"
-	"sync/atomic"
 
-	"githun.com/duiyuan/faucet/constants"
-	"githun.com/duiyuan/faucet/thirdweb"
+	"github.com/spf13/cobra"
+	"githun.com/duiyuan/faucet/core"
 )
 
-var (
-	wg      sync.WaitGroup
-	succeed int32
-	failed  int32
-)
+var faucetCmd = &cobra.Command{
+	Use:   "faucet",
+	Short: "Faucet Sepolia ETH",
+	Run: func(cmd *cobra.Command, arg []string) {
+		Dofaucet(chain, wallet)
+	},
+}
 
-func faucet(toAddr string) {
-	blockchains := constants.ChainItems
+func Dofaucet(chain string, wallet string) {
+	faucet, err := core.ClaimToken(
+		chain,
+		wallet,
+	)
 
-	fmt.Printf("\nStart to faucet Sepolia ETH to %s \n", toAddr)
-	fmt.Println("")
-
-	for _, chain := range blockchains {
-		wg.Add(1)
-		go func() {
-			if err := thirdweb.ClaimToken(chain.ID, chain.Name, toAddr); err != nil {
-				atomic.AddInt32(&failed, 1)
-			} else {
-				atomic.AddInt32(&succeed, 1)
-			}
-			wg.Done()
-		}()
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
 
-	wg.Wait()
+	hash := faucet["hash"]
+	fmt.Printf("Hash %s \n", hash)
+}
 
-	fmt.Printf("\nEnd faucet, succeed: %d, failed: %d \n", succeed, failed)
+func init() {
+	rootCmd.AddCommand(faucetCmd)
 }

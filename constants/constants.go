@@ -3,8 +3,9 @@ package constants
 import "githun.com/duiyuan/faucet/utils"
 
 type ChainItem struct {
-	Name string
-	ID   int32
+	Name      string
+	ID        int32
+	Supported bool
 }
 
 type Short string
@@ -23,10 +24,10 @@ const (
 )
 
 var ChainList = map[Short]ChainItem{
-	"ETH":     {ID: ETH, Name: "Ethereum"},
-	"Base":    {ID: BASE, Name: "Base"},
-	"ARB":     {ID: ARB, Name: "Arbitrum"},
-	"OPT":     {ID: OPT, Name: "Optimism"},
+	"ETH":     {ID: ETH, Name: "Ethereum", Supported: true},
+	"Base":    {ID: BASE, Name: "Base", Supported: true},
+	"ARB":     {ID: ARB, Name: "Arbitrum", Supported: true},
+	"OPT":     {ID: OPT, Name: "Optimism", Supported: false},
 	"POLY":    {ID: POLYGON, Name: "Polygon"},
 	"BNB":     {ID: BNB, Name: "BNB"},
 	"B3":      {ID: B3, Name: "B3"},

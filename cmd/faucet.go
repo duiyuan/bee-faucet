@@ -8,8 +8,9 @@ import (
 )
 
 var faucetCmd = &cobra.Command{
-	Use:   "faucet",
-	Short: "Faucet Sepolia ETH",
+	Use:    "faucet",
+	Short:  "Faucet Sepolia ETH",
+	Hidden: true,
 	Run: func(cmd *cobra.Command, arg []string) {
 		Dofaucet(chain, wallet)
 	},

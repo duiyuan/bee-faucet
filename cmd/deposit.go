@@ -5,6 +5,7 @@ import (
 	"sync"
 	"sync/atomic"
 
+	"github.com/spf13/cobra"
 	"githun.com/duiyuan/faucet/constants"
 	"githun.com/duiyuan/faucet/thirdweb"
 )
@@ -15,6 +16,14 @@ var (
 	failed  int32
 )
 
+var depositCmd = &cobra.Command{
+	Use:   "deposit",
+	Short: "Deposit sepolia to build-in accounts",
+	Run: func(cmd *cobra.Command, arg []string) {
+		Deposit(thirdweb.Account)
+	},
+}
+
 func Deposit(toAddr string) {
 	blockchains := constants.ChainItems
 
@@ -22,7 +31,6 @@ func Deposit(toAddr string) {
 	fmt.Println("")
 
 	for _, chain := range blockchains {
-		wg.Add(1)
 		wg.Add(1)
 		go func() {
 			if err := thirdweb.ClaimToken(chain.ID, chain.Name, toAddr); err != nil {
@@ -37,4 +45,8 @@ func Deposit(toAddr string) {
 	wg.Wait()
 
 	fmt.Printf("\nEnd faucet, succeed: %d, failed: %d \n", succeed, failed)
+}
+
+func init() {
+	rootCmd.AddCommand(depositCmd)
 }

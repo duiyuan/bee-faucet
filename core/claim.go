@@ -39,7 +39,6 @@ func ClaimToken[T any](chain string, toAddress string) (T, error) {
 	}
 
 	if err := json.Unmarshal(bytes, &result); err != nil {
-		fmt.Println(err)
 		return result, err
 	}
 

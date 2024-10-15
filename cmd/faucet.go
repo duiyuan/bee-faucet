@@ -16,8 +16,21 @@ var faucetCmd = &cobra.Command{
 	},
 }
 
+type TransferResp struct {
+	Hash   string `json:"hash"`
+	Amount string `json:"amount"`
+	Token  string `json:"token"`
+	Chain  string `json:"chain"`
+}
+
+type TxResp struct {
+	Err     int            `json:"err"`
+	Message string         `json:"message"`
+	Data    []TransferResp `json:"data"`
+}
+
 func Dofaucet(chain string, wallet string) {
-	faucet, err := core.ClaimToken(
+	resp, err := core.ClaimToken[TxResp](
 		chain,
 		wallet,
 	)
@@ -27,8 +40,27 @@ func Dofaucet(chain string, wallet string) {
 		return
 	}
 
-	hash := faucet["hash"]
-	fmt.Printf("Hash %s \n", hash)
+	// var resp TxResp
+	// if err := mapstructure.Decode(result, &resp); err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+
+	if err, message := resp.Err, resp.Message; err != 0 {
+		fmt.Println(message)
+		return
+	}
+
+	data := resp.Data
+
+	fmt.Printf("\nStart to Deposit Sepolia ETH to %s \n", wallet)
+	fmt.Println("")
+	for _, item := range data {
+		format := fmt.Sprintf("🚀 %%-%ds success, faucet %%s %%s! Hash: %%s\n", 10)
+		fmt.Printf(format, item.Chain, item.Amount, item.Token, item.Hash)
+	}
+	fmt.Printf("\nEnd faucet, succeed: %d, failed: %d \n", succeed, failed)
+	fmt.Println("")
 }
 
 func init() {

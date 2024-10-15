@@ -3,40 +3,43 @@ package core
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 )
 
 var UserCookies = []*http.Cookie{}
-var endpoint = "http://localhost:8091/sendtx"
+var endpoint = "http://localhost:8595/sendtx"
 
-func ClaimToken(chain string, toAddress string) (map[string]interface{}, error) {
-	var result map[string]interface{}
+var str = "{\"data\":[{\"hash\":\"0xa7dd50bf3026c8d26f492faa105e99b7fceb6ac8041bce7d26f5a490fa783574\",\"amount\":\"1000000000000\",\"token\":\"ETH\",\"chain\":\"ethereum\"}],\"err\":0,\"message\":\"ok\"}"
 
-	req := &TestnetFaucet{
-		Chain:     chain,
-		ToAddress: toAddress,
-	}
+func ClaimToken[T any](chain string, toAddress string) (T, error) {
+	var result T
 
-	bytes, err := json.Marshal(req)
-	if err != nil {
-		fmt.Println(err)
-		return result, err
-	}
+	// req := &TestnetFaucet{
+	// 	Chain:     chain,
+	// 	ToAddress: toAddress,
+	// }
 
-	resp, err := req.PostWithCookie(endpoint, bytes, UserCookies)
-	if err != nil {
-		fmt.Println(err)
-		return result, err
-	}
+	// bytes, err := json.Marshal(req)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return result, err
+	// }
 
-	defer resp.Body.Close()
+	// resp, err := req.PostWithCookie(endpoint, bytes, UserCookies)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return result, err
+	// }
 
-	bytes, err = io.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println(err)
-		return result, err
-	}
+	// defer resp.Body.Close()
+
+	// bytes, err = io.ReadAll(resp.Body)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return result, err
+	// }
+
+	bytes := []byte(str)
 
 	if err := json.Unmarshal(bytes, &result); err != nil {
 		fmt.Println(err)

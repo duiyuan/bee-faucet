@@ -56,7 +56,7 @@ func Dofaucet(chain string, wallet string) {
 	fmt.Printf("\nStart to Deposit Sepolia ETH to %s \n", wallet)
 	fmt.Println("")
 	for _, item := range data {
-		format := fmt.Sprintf("🚀 %%-%ds success, faucet %%s %%s! Hash: %%s\n", 10)
+		format := fmt.Sprintf("◇ %%-%ds, faucet %%s %%s! (%%s)\n", 10)
 		fmt.Printf(format, item.Chain, item.Amount, item.Token, item.Hash)
 	}
 	fmt.Printf("\nEnd faucet, succeed: %d, failed: %d \n", succeed, failed)

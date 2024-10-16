@@ -8,7 +8,7 @@ import (
 )
 
 var UserCookies = []*http.Cookie{}
-var endpoint = "http://localhost:8595/sendtx"
+var endpoint = "http://localhost:8595/transfer"
 
 func ClaimToken[T any](chain string, toAddress string) (T, error) {
 	var result T

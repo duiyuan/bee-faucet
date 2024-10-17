@@ -50,26 +50,28 @@ Flags:
 
 ```
 $ beefaucet faucet -w 0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7 // or go run main.go
+
 Start to deposit Sepolia ETH to 0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7
 
-✅ ethereum   faucet 0.0001 ETH! (0x935e8291d39f77a468e877c158caee69f8cd77daaaaeee211da710955dd4ce44)
-✅ base       faucet 0.0001 ETH! (0x412f8319a402af33927b11469c50a6db17d98c427f33e1243f78e3b9932e05ca)
-✅ arbitrum   faucet 0.0001 ETH! (0xd686882b76db9cad1ede9ccf094f2692e851adb94a28c2de887ff0026a3bf31c)
+✅ optimism   faucet 0.0001 ETH! (0x7a0d2bed16c9bce297d009ae6e6b812718bd034274e35a582532b2e4196e831b)
+✅ ethereum   faucet 0.0001 ETH! (0x0892599ef49b4fc5071f1c0a6bd286df2026f5ecf70a059af3071d71b912046f)
+✅ arbitrum   faucet 0.0001 ETH! (0xb37afd1a14edfe6f7c67e9b2e0a5524413c4eeb57f57d810491bdd1b1a818445)
+✅ base       faucet 0.0001 ETH! (0x9b5547273ac751f31439f000732a91aa1b3310dfcdb17b83346fef77d88acacb)
 
-Task completed, succeed: 3, failed: 0
+Task completed, succeed: 4, failed: 0
 ```
 
 ### Supported Chain
 
 ```
 $ beefaucet list // or go run main.go list
-Polygon          ID:1442       (supported)
-B3               ID:1993       (supported)
-Xpla             ID:47         (supported)
-Optimism         ID:11155420   (supported)
-BNB              ID:97         (supported)
-Creator          ID:4654       (supported)
-Ethereum Sepolia ID:11155111   (supported)
-Base             ID:11155420   (supported)
-Arbitrum         ID:421614     (supported)
+Arbitrum ID:421614     (Supported)
+B3       ID:1993       (Not supported)
+BNB      ID:97         (Not supported)
+Base     ID:11155420   (Supported)
+Creator  ID:4654       (Not supported)
+Ethereum ID:11155111   (Supported)
+Optimism ID:11155420   (Supported)
+Polygon  ID:1442       (Not supported)
+Xpla     ID:47         (Not supported)
 ```

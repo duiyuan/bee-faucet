@@ -8,6 +8,7 @@ import (
 
 var wallet string
 var chain string
+var endpoint string
 
 var rootCmd = &cobra.Command{
 	Use:   "beefaucet",
@@ -20,6 +21,7 @@ var rootCmd = &cobra.Command{
 func init() {
 	rootCmd.PersistentFlags().StringVarP(&wallet, "wallet", "w", "0x7F92031F63e01A6ADA475F6E8A637Ce752f8d7D2", "Which wallet/address faucet for")
 	rootCmd.PersistentFlags().StringVarP(&chain, "chain", "c", "ethereum", "which chain you want get Sepolia ETH")
+	rootCmd.PersistentFlags().StringVarP(&endpoint, "endpoint", "e", "http://139.196.213.90:8595", "Endpoint for blockchain nodes")
 }
 
 func Excute() {

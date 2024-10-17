@@ -2,9 +2,14 @@ package cmd
 
 import (
 	"fmt"
+	"strings"
+	"sync"
+	"sync/atomic"
 
 	"github.com/spf13/cobra"
+	"githun.com/duiyuan/faucet/constants"
 	"githun.com/duiyuan/faucet/core"
+	"githun.com/duiyuan/faucet/utils"
 )
 
 var faucetCmd = &cobra.Command{
@@ -21,6 +26,7 @@ type TransferResp struct {
 	Amount string `json:"amount"`
 	Token  string `json:"token"`
 	Chain  string `json:"chain"`
+	Err    string `json:"error"`
 }
 
 type TxResp struct {
@@ -29,9 +35,20 @@ type TxResp struct {
 	Data    []TransferResp `json:"data"`
 }
 
-func Dofaucet(chain string, wallet string) {
+func GetMaxLen(data []TransferResp) int {
+	return utils.Reduce(data, 10, func(p int, n TransferResp) int {
+		l := len(n.Chain)
+		if l > p {
+			return l
+		}
+		return p
+	})
+}
+
+func claim(chain string) (item *TransferResp, err error) {
 	resp, err := core.ClaimToken[TxResp](
-		chain,
+		fmt.Sprintf("%s/%s", endpoint, "transfer"),
+		strings.ToLower(chain),
 		wallet,
 	)
 
@@ -40,26 +57,58 @@ func Dofaucet(chain string, wallet string) {
 		return
 	}
 
-	// var resp TxResp
-	// if err := mapstructure.Decode(result, &resp); err != nil {
-	// 	fmt.Println(err)
-	// 	return
-	// }
-
-	if err, message := resp.Err, resp.Message; err != 0 {
+	e, message := resp.Err, resp.Message
+	if e != 0 {
 		fmt.Println(message)
 		return
 	}
 
 	data := resp.Data
+	item = &data[0]
+	return
+}
 
-	fmt.Printf("\nStart to Deposit Sepolia ETH to %s \n", wallet)
+func Dofaucet(chain string, wallet string) {
+	var succeed, failed int32
+	var wg sync.WaitGroup
+
+	chains := utils.Filter(constants.ChainItems, func(item constants.ChainItem) bool {
+		return item.Supported
+	})
+
+	fmt.Printf("\nStart to deposit Sepolia ETH to %s \n", wallet)
 	fmt.Println("")
-	for _, item := range data {
-		format := fmt.Sprintf("◇ %%-%ds, faucet %%s %%s! (%%s)\n", 10)
-		fmt.Printf(format, item.Chain, item.Amount, item.Token, item.Hash)
+
+	for _, c := range chains {
+		wg.Add(1)
+		go func() {
+			var format string
+
+			defer wg.Done()
+
+			item, err := claim(c.Name)
+			if err != nil {
+				format = fmt.Sprintf("❌ %%-%ds error %%s\n", 10)
+				fmt.Printf(format, chain, err)
+				atomic.AddInt32(&failed, 1)
+				return
+			}
+
+			chain, amount, token, hash, e := item.Chain, item.Amount, item.Token, item.Hash, item.Err
+			if e == "" {
+				format = fmt.Sprintf("✅ %%-%ds faucet %%s %%s! (%%s)\n", 10)
+				fmt.Printf(format, chain, amount, token, hash)
+				atomic.AddInt32(&succeed, 1)
+			} else {
+				format = fmt.Sprintf("❌ %%-%ds error %%s %%s! (%%s)\n", 10)
+				fmt.Printf(format, chain, amount, token, err)
+				atomic.AddInt32(&failed, 1)
+			}
+		}()
 	}
-	fmt.Printf("\nEnd faucet, succeed: %d, failed: %d \n", succeed, failed)
+	wg.Wait()
+
+	fmt.Printf("\nTask completed, succeed: %d, failed: %d \n", succeed, failed)
 	fmt.Println("")
 }
 

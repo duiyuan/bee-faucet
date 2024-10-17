@@ -1,6 +1,8 @@
 package constants
 
-import "githun.com/duiyuan/faucet/utils"
+import (
+	"githun.com/duiyuan/faucet/utils"
+)
 
 type ChainItem struct {
 	Name      string
@@ -28,11 +30,11 @@ var ChainList = map[Short]ChainItem{
 	"Base":    {ID: BASE, Name: "Base", Supported: true},
 	"ARB":     {ID: ARB, Name: "Arbitrum", Supported: true},
 	"OPT":     {ID: OPT, Name: "Optimism", Supported: false},
-	"POLY":    {ID: POLYGON, Name: "Polygon"},
-	"BNB":     {ID: BNB, Name: "BNB"},
-	"B3":      {ID: B3, Name: "B3"},
-	"Creator": {ID: CREATOR, Name: "Creator"},
-	"Xpla":    {ID: XPLA, Name: "Xpla"},
+	"POLY":    {ID: POLYGON, Name: "Polygon", Supported: false},
+	"BNB":     {ID: BNB, Name: "BNB", Supported: false},
+	"B3":      {ID: B3, Name: "B3", Supported: false},
+	"Creator": {ID: CREATOR, Name: "Creator", Supported: false},
+	"Xpla":    {ID: XPLA, Name: "Xpla", Supported: false},
 }
 
 var ChainShortNames = utils.GetKeys(ChainList)

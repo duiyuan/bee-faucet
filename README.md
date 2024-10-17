@@ -2,15 +2,17 @@
 
 A faucet tool supports distributing test tokens like Sepolia-ETH and Solana (Devnet).
 
-# Supported networks:
+# Supported Network
 
 Chain:
 
 - Ethereum Sepolia
 - Base Sepolia
 - Arbitrum Sepolia
+- Optimism Sepolia
 
 Token:
+
 ETH
 
 # Download & Build

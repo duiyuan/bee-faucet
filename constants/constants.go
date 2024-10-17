@@ -1,10 +1,13 @@
 package constants
 
-import "githun.com/duiyuan/faucet/utils"
+import (
+	"githun.com/duiyuan/faucet/utils"
+)
 
 type ChainItem struct {
-	Name string
-	ID   int32
+	Name      string
+	ID        int32
+	Supported bool
 }
 
 type Short string
@@ -23,15 +26,15 @@ const (
 )
 
 var ChainList = map[Short]ChainItem{
-	"ETH":     {ID: ETH, Name: "Ethereum"},
-	"Base":    {ID: BASE, Name: "Base"},
-	"ARB":     {ID: ARB, Name: "Arbitrum"},
-	"OPT":     {ID: OPT, Name: "Optimism"},
-	"POLY":    {ID: POLYGON, Name: "Polygon"},
-	"BNB":     {ID: BNB, Name: "BNB"},
-	"B3":      {ID: B3, Name: "B3"},
-	"Creator": {ID: CREATOR, Name: "Creator"},
-	"Xpla":    {ID: XPLA, Name: "Xpla"},
+	"ETH":     {ID: ETH, Name: "Ethereum", Supported: true},
+	"Base":    {ID: BASE, Name: "Base", Supported: true},
+	"ARB":     {ID: ARB, Name: "Arbitrum", Supported: true},
+	"OPT":     {ID: OPT, Name: "Optimism", Supported: false},
+	"POLY":    {ID: POLYGON, Name: "Polygon", Supported: false},
+	"BNB":     {ID: BNB, Name: "BNB", Supported: false},
+	"B3":      {ID: B3, Name: "B3", Supported: false},
+	"Creator": {ID: CREATOR, Name: "Creator", Supported: false},
+	"Xpla":    {ID: XPLA, Name: "Xpla", Supported: false},
 }
 
 var ChainShortNames = utils.GetKeys(ChainList)

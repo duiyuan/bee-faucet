@@ -26,6 +26,20 @@
       "mode": "auto",
       "program": "${workspaceFolder}/main.go",
       "args": ["-w", "0xe3AD63d0a5EB5a946f96B0c62e136335e1e47f2A"]
+    },
+    {
+      "name": "faucet",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/main.go",
+      "args": [
+        "faucet",
+        "-w",
+        "0xe3AD63d0a5EB5a946f96B0c62e136335e1e47f2A",
+        "-e",
+        "http://localhost:8595"
+      ]
     }
   ]
 }

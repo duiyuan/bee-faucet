@@ -46,7 +46,7 @@ Flags:
 
 ```
 
-### Do Faucet
+### Faucet
 
 ```
 $ beefaucet faucet -w 0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7 // or go run main.go

@@ -49,7 +49,7 @@ Flags:
 ### Do Faucet
 
 ```
-$ beefaucet faucet -w 0xe3AD63d0a5EB5a946f96B0c62e136335e1e47f2A // or go run main.go
+$ beefaucet faucet -w 0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7 // or go run main.go
 Start to deposit Sepolia ETH to 0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7
 
 ✅ ethereum   faucet 0.0001 ETH! (0x935e8291d39f77a468e877c158caee69f8cd77daaaaeee211da710955dd4ce44)

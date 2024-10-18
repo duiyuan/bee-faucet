@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 	"sync"
@@ -53,13 +54,12 @@ func claim(chain string) (item *TransferResp, err error) {
 	)
 
 	if err != nil {
-		fmt.Println(err)
 		return
 	}
 
 	e, message := resp.Err, resp.Message
 	if e != 0 {
-		fmt.Println(message)
+		err = errors.New(message)
 		return
 	}
 
@@ -89,7 +89,7 @@ func Dofaucet(chain string, wallet string) {
 			item, err := claim(c.Name)
 			if err != nil {
 				format = fmt.Sprintf("❌ %%-%ds error %%s\n", 10)
-				fmt.Printf(format, chain, err)
+				fmt.Printf(format, c.Name, err)
 				atomic.AddInt32(&failed, 1)
 				return
 			}

@@ -1,7 +1,7 @@
 package constants
 
 import (
-	"githun.com/duiyuan/faucet/utils"
+	"github.com/189/golodash"
 )
 
 type ChainItem struct {
@@ -37,13 +37,13 @@ var ChainList = map[Short]ChainItem{
 	"Xpla":    {ID: XPLA, Name: "Xpla", Supported: false},
 }
 
-var ChainShortNames = utils.GetKeys(ChainList)
-var ChainItems = utils.GetValues(ChainList)
-var ChainLongNames = utils.Map(ChainItems, func(item ChainItem) string {
+var ChainShortNames = golodash.GetKeys(ChainList)
+var ChainItems = golodash.GetValues(ChainList)
+var ChainLongNames = golodash.Map(ChainItems, func(item ChainItem) string {
 	return item.Name
 })
 
-var MaxChainNameLen = utils.Reduce(ChainLongNames, 0, func(prev int, now string) int {
+var MaxChainNameLen = golodash.Reduce(ChainLongNames, 0, func(prev int, now string) int {
 	if prev > len(now) {
 		return prev
 	}

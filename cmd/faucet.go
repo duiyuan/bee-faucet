@@ -7,10 +7,10 @@ import (
 	"sync"
 	"sync/atomic"
 
+	"github.com/189/golodash"
 	"github.com/spf13/cobra"
 	"githun.com/duiyuan/faucet/constants"
 	"githun.com/duiyuan/faucet/core"
-	"githun.com/duiyuan/faucet/utils"
 )
 
 var faucetCmd = &cobra.Command{
@@ -37,7 +37,7 @@ type TxResp struct {
 }
 
 func GetMaxLen(data []TransferResp) int {
-	return utils.Reduce(data, 10, func(p int, n TransferResp) int {
+	return golodash.Reduce(data, 10, func(p int, n TransferResp) int {
 		l := len(n.Chain)
 		if l > p {
 			return l
@@ -72,7 +72,7 @@ func Dofaucet(chain string, wallet string) {
 	var succeed, failed int32
 	var wg sync.WaitGroup
 
-	chains := utils.Filter(constants.ChainItems, func(item constants.ChainItem) bool {
+	chains := golodash.Filter(constants.ChainItems, func(item constants.ChainItem) bool {
 		return item.Supported
 	})
 

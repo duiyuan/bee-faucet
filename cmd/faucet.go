@@ -35,7 +35,7 @@ var faucetCmd = &cobra.Command{
 
 	},
 	Example: `
-		beefaucet -w 0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7 --chain base --token usdt // Get one token
+		beetools -w 0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7 --chain base --token usdt // Get one token
 	`,
 }
 

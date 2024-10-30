@@ -23,15 +23,15 @@ jobs:
 
       - name: Build for macOS (x86_64)
         run: |
-          GOOS=darwin GOARCH=amd64 go build -o beefaucet.amd64
+          GOOS=darwin GOARCH=amd64 go build -o beetools.amd64
 
       - name: Build for macOS (ARM64)
         run: |
-          GOOS=darwin GOARCH=arm64 go build -o beefaucet.arm64
+          GOOS=darwin GOARCH=arm64 go build -o beetools.arm64
 
       - name: Build for Windows (x86_64)
         run: |
-          GOOS=windows GOARCH=amd64 go build -o beefaucet
+          GOOS=windows GOARCH=amd64 go build -o beetools
 
       - name: Create Release
         id: create_release
@@ -52,8 +52,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: beefaucet.amd64
-          asset_name: beefaucet.amd64
+          asset_path: beetools.amd64
+          asset_name: beetools.amd64
           asset_content_type: application/octet-stream
 
       - name: Upload macOS ARM64 Artifact
@@ -62,8 +62,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: beefaucet.arm64
-          asset_name: beefaucet.arm64
+          asset_path: beetools.arm64
+          asset_name: beetools.arm64
           asset_content_type: application/octet-stream
 
       - name: Upload Windows AMD64 Artifact
@@ -72,6 +72,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: beefaucet
-          asset_name: beefaucet.exe
+          asset_path: beetools
+          asset_name: beetools.exe
           asset_content_type: application/octet-stream

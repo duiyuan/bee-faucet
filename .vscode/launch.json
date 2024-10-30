@@ -40,9 +40,9 @@
         "-e",
         "http://localhost:8595",
         "-c",
-        "ethereum",
+        "base",
         "-t",
-        "eth"
+        "usdt"
       ]
     },
     {
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "name": "optimism:usdt",
+      "name": "base:usdt",
       "type": "go",
       "request": "launch",
       "mode": "auto",
@@ -76,9 +76,9 @@
         "-e",
         "http://localhost:8595",
         "-c",
-        "optimism",
+        "base",
         "-t",
-        "usdt"
+        "eth"
       ]
     }
   ]

@@ -9,12 +9,13 @@ import (
 
 var UserCookies = []*http.Cookie{}
 
-func ClaimToken[T any](endpoint, chain string, toAddress string) (T, error) {
+func ClaimToken[T any](endpoint, chain string, token string, toAddress string) (T, error) {
 	var result T
 
 	req := &TestnetFaucet{
 		Chain:     chain,
 		ToAddress: toAddress,
+		Token:     token,
 	}
 
 	bytes, err := json.Marshal(req)

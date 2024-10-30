@@ -10,12 +10,15 @@ import (
 type TestnetFaucet struct {
 	Chain     string `json:"chain"`
 	ToAddress string `json:"recipient"`
+	Token     string `json:"token"`
 }
 
 func (t *TestnetFaucet) PostWithCookie(endpoint string, data []byte, cookies []*http.Cookie) (*http.Response, error) {
 	buf := bytes.NewBuffer(data)
 
 	req, err := http.NewRequest("POST", endpoint, buf)
+	req.Header.Set("Content-Type", "application/json")
+
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)

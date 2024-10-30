@@ -25,16 +25,18 @@ const (
 	XPLA    = 47
 )
 
+var Tokens = []string{"eth", "usdt"}
+
 var ChainList = map[Short]ChainItem{
-	"ETH":     {ID: ETH, Name: "Ethereum", Supported: true},
-	"Base":    {ID: BASE, Name: "Base", Supported: true},
-	"ARB":     {ID: ARB, Name: "Arbitrum", Supported: true},
-	"OPT":     {ID: OPT, Name: "Optimism", Supported: true},
-	"POLY":    {ID: POLYGON, Name: "Polygon", Supported: false},
-	"BNB":     {ID: BNB, Name: "BNB", Supported: false},
-	"B3":      {ID: B3, Name: "B3", Supported: false},
-	"Creator": {ID: CREATOR, Name: "Creator", Supported: false},
-	"Xpla":    {ID: XPLA, Name: "Xpla", Supported: false},
+	"ETH":  {ID: ETH, Name: "Ethereum", Supported: true},
+	"Base": {ID: BASE, Name: "Base", Supported: true},
+	"ARB":  {ID: ARB, Name: "Arbitrum", Supported: true},
+	"OPT":  {ID: OPT, Name: "Optimism", Supported: true},
+	// "POLY":    {ID: POLYGON, Name: "Polygon", Supported: false},
+	// "BNB":     {ID: BNB, Name: "BNB", Supported: false},
+	// "B3":      {ID: B3, Name: "B3", Supported: false},
+	// "Creator": {ID: CREATOR, Name: "Creator", Supported: false},
+	// "Xpla":    {ID: XPLA, Name: "Xpla", Supported: false},
 }
 
 var ChainShortNames = golodash.GetKeys(ChainList)

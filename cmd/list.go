@@ -5,7 +5,7 @@ import (
 	"sort"
 
 	"github.com/spf13/cobra"
-	"githun.com/duiyuan/faucet/constants"
+	"githun.com/duiyuan/beetools/constants"
 )
 
 var listCmd = &cobra.Command{

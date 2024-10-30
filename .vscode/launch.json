@@ -25,10 +25,10 @@
       "request": "launch",
       "mode": "auto",
       "program": "${workspaceFolder}/main.go",
-      "args": ["-w", "0xe3AD63d0a5EB5a946f96B0c62e136335e1e47f2A"]
+      "args": ["-w", "0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7"]
     },
     {
-      "name": "faucet",
+      "name": "faucet:eth:eth",
       "type": "go",
       "request": "launch",
       "mode": "auto",
@@ -36,9 +36,49 @@
       "args": [
         "faucet",
         "-w",
-        "0xe3AD63d0a5EB5a946f96B0c62e136335e1e47f2A",
+        "0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7",
         "-e",
-        "http://localhost:8595"
+        "http://localhost:8595",
+        "-c",
+        "ethereum",
+        "-t",
+        "eth"
+      ]
+    },
+    {
+      "name": "faucet:eth:usdt",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/main.go",
+      "args": [
+        "faucet",
+        "-w",
+        "0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7",
+        "-e",
+        "http://localhost:8595",
+        "-c",
+        "ethereum",
+        "-t",
+        "usdt"
+      ]
+    },
+    {
+      "name": "optimism:usdt",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/main.go",
+      "args": [
+        "faucet",
+        "-w",
+        "0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7",
+        "-e",
+        "http://localhost:8595",
+        "-c",
+        "optimism",
+        "-t",
+        "usdt"
       ]
     }
   ]

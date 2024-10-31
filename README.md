@@ -18,7 +18,7 @@ Token:
 
 # Download
 
-[Here](https://github.com/duiyuan/faucet/releases).
+[Releases](https://github.com/duiyuan/faucet/releases).
 
 # Build from source code
 
@@ -57,8 +57,6 @@ Flags:
 ```
 $ beetools faucet -w 0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7 --chain optimism --token usdt // Retrive one token
 
-```
-
 ----------|-------|--------|--------|------------|-------------------------------------------------------------------------------------------------------------|
 | CHAIN | TOKEN | AMOUNT | STATUS | STATUSTEXT | LINK |
 |----------|-------|--------|--------|------------|-------------------------------------------------------------------------------------------------------------|
@@ -74,7 +72,7 @@ You can request the faucet once every 6 hours; violating this will result in rat
 ```
 
 $ beetools faucet -w 0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7 --chain base --token usdt
-$
+
 |----------|-------|--------|--------|--------------------------------|------|
 | CHAIN | TOKEN | AMOUNT | STATUS | STATUSTEXT | LINK |
 |----------|-------|--------|--------|--------------------------------|------|
@@ -98,7 +96,5 @@ Ethereum ID:11155111 (Supported)
 Optimism ID:11155420 (Supported)
 Polygon ID:1442 (Not supported)
 Xpla ID:47 (Not supported)
-
-```
 
 ```

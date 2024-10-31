@@ -1,4 +1,4 @@
-# Faucet
+# Beetools
 
 A faucet tool supports distributing test tokens like Sepolia-ETH and Solana (Devnet).
 
@@ -35,9 +35,11 @@ $ go build -o beetools
 ```
 $ beetools -h // or go run main.go -h
 
+Faucet ETH Token for Ethereum or L2 base on Ethereum
+
 Usage:
-  beetools [flags]
-  beetools [command]
+  beefaucet [flags]
+  beefaucet [command]
 
 Available Commands:
   completion  Generate the autocompletion script for the specified shell
@@ -47,9 +49,11 @@ Available Commands:
 Flags:
   -c, --chain string      which chain you want get Sepolia ETH (default "ethereum")
   -e, --endpoint string   Endpoint for blockchain nodes (default "http://139.196.213.90:8595")
-  -h, --help              help for beetools
+  -h, --help              help for beefaucet
+  -t, --token string      which token you want get it's will be ETH, USDT
   -w, --wallet string     Which wallet/address faucet for (default "0x7F92031F63e01A6ADA475F6E8A637Ce752f8d7D2")
 
+Use "beefaucet [command] --help" for more information about a command.
 ```
 
 ### Faucet
@@ -57,7 +61,7 @@ Flags:
 ```
 $ beetools faucet -w 0x17c3Da8F476a185f707aEA0f1C2A64F04142EbD7 --chain optimism --token usdt // Retrive one token
 
-----------|-------|--------|--------|------------|-------------------------------------------------------------------------------------------------------------|
+|----------|-------|--------|--------|------------|-------------------------------------------------------------------------------------------------------------|
 | CHAIN | TOKEN | AMOUNT | STATUS | STATUSTEXT | LINK |
 |----------|-------|--------|--------|------------|-------------------------------------------------------------------------------------------------------------|
 | optimism | usdt | 10 | OK | OK | https://sepolia-optimism.etherscan.io/tx/0x22ec7511050c4d5c1b218ac1fe8724ee187cb611a2ce271059e18f7f2a3e8878 |
